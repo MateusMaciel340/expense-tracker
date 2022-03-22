@@ -1,8 +1,12 @@
+import { Routers } from "./router";
+import { GlobalStyle } from "./styles/GlobalStyle";
+
 function App() {
   return (
-      <>
-        <h1>Sistema de Finanças Pessoais</h1>
-      </>
+    <>
+      <GlobalStyle/>
+      <Routers/>
+    </>
   );
 }
 
