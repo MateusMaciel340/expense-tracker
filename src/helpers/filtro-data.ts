@@ -33,6 +33,11 @@ const adicionarZeroData = (n: number): string => n < 10 ?  `0${n}` : `${n}`;
 
 export const formatarMesAtual = (mesAtual: string): string => {
     let [ano, mes] = mesAtual.split("-");
-    let meses = ["Janeiro", "Fevereiro", "Março", "Junho", "Julho", "Agosto", "Setembro", "Novembro", "Dezembro"];
+    let meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
     return `${meses[parseInt(mes) - 1]} de ${ano}`;
+}
+
+export const novaDataAjustada = (dataCampo: string) => {
+    let [ano, mes, dia] = dataCampo.split("-");
+    return new Date(parseInt(ano), parseInt(mes) - 1, parseInt(dia));
 }

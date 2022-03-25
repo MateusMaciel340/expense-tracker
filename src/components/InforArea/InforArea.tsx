@@ -4,7 +4,7 @@ import { ResumoItem } from "../ResumoItem/ResumoItem";
 
 type Props = {
     mesAtual: string,
-    LigarMesChange: ( novoMes: string ) => void,
+    LigarMesChange: ( novoMes: string ) => void;
     receita: number,
     despesa: number,
 }

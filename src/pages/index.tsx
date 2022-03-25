@@ -1,7 +1,6 @@
 import * as C from "../styles/GlobalStyle";
 import { useState, useEffect } from "react";
 import { Item } from "../types/Item";
-import { Categoria } from "../types/Categoria";
 import { itens } from "../data/itens";
 import { categorias } from "../data/categorias";
 import { pegarMesAtual, filtreListaPeloMes } from "../helpers/filtro-data";
