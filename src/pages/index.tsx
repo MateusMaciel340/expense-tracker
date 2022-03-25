@@ -7,19 +7,45 @@ import { categorias } from "../data/categorias";
 import { pegarMesAtual, filtreListaPeloMes } from "../helpers/filtro-data";
 import { TabelaArea } from "../components/TabelaArea/TabelaArea";
 import { InforArea } from "../components/InforArea/InforArea";
+import { InputArea } from "../components/InputArea/InputArea";
 
 export const Home = () => {
 
     const [lista, setLista] = useState(itens);
     const [filtroLista, setFiltroLista] = useState<Item[]>([]);
     const [mesAtual, setMesAtual] = useState(pegarMesAtual());
+    const [receita, setReceita] = useState(0);
+    const [despesa, setDespesa] = useState(0)
 
     useEffect(() => {
         setFiltroLista( filtreListaPeloMes(lista, mesAtual));
-    }, [lista, mesAtual])
+    }, [lista, mesAtual]);
 
-    console.log(filtroLista);
-    console.log(lista);
+    useEffect(() => {
+        let receitaContador = 0; let despesaContador = 0;
+
+        for(let contador in filtroLista){
+            if(categorias[filtroLista[contador].categoria].despesa){
+                despesaContador += filtroLista[contador].valor;
+            }else{
+                receitaContador += filtroLista[contador].valor;
+            }
+        }
+
+        setReceita(receitaContador);
+        setDespesa(despesaContador);
+
+    },[filtroLista])
+
+    const LidarMesChange = (novoMes: string) => {
+        setMesAtual(novoMes);
+    }
+
+    const LidarItemAdicionado = (item: Item) => {
+        let novaLista = [...lista];
+        novaLista.push(item);
+        setLista(novaLista);
+    }
 
     return(
         <C.Container>
@@ -27,9 +53,14 @@ export const Home = () => {
                 <C.HeaderText>Sistema Financeiro</C.HeaderText>
             </C.Header>
             <C.Body>
-                <InforArea mesAtual={mesAtual} />
+                <InforArea
+                    mesAtual={mesAtual}
+                    LigarMesChange={LidarMesChange}
+                    receita={receita}
+                    despesa={despesa}
+                />
 
-                {/* Área de inserção */}
+                <InputArea AdicionadoItem={LidarItemAdicionado} />
 
                 <TabelaArea lista={filtroLista} />
                 
