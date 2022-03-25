@@ -26,5 +26,13 @@ export const formatarData = (data: Date): string => {
     let mes = data.getMonth() + 1;
     let dia = data.getDate();
 
-    return `${dia}/0${mes}/${ano}`;
+    return `${adicionarZeroData(dia)}/${adicionarZeroData(mes)}/${ano}`;
+}
+
+const adicionarZeroData = (n: number): string => n < 10 ?  `0${n}` : `${n}`;
+
+export const formatarMesAtual = (mesAtual: string): string => {
+    let [ano, mes] = mesAtual.split("-");
+    let meses = ["Janeiro", "Fevereiro", "Março", "Junho", "Julho", "Agosto", "Setembro", "Novembro", "Dezembro"];
+    return `${meses[parseInt(mes) - 1]} de ${ano}`;
 }

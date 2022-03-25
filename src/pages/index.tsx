@@ -6,6 +6,7 @@ import { itens } from "../data/itens";
 import { categorias } from "../data/categorias";
 import { pegarMesAtual, filtreListaPeloMes } from "../helpers/filtro-data";
 import { TabelaArea } from "../components/TabelaArea/TabelaArea";
+import { InforArea } from "../components/InforArea/InforArea";
 
 export const Home = () => {
 
@@ -26,11 +27,9 @@ export const Home = () => {
                 <C.HeaderText>Sistema Financeiro</C.HeaderText>
             </C.Header>
             <C.Body>
-                {/* Área de informações */}
+                <InforArea mesAtual={mesAtual} />
 
                 {/* Área de inserção */}
-
-                {/* Tabela de item */}
 
                 <TabelaArea lista={filtroLista} />
                 
